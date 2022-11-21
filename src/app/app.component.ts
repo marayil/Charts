@@ -11,4 +11,5 @@ export class AppComponent {
 
     sample =[1,2,3,4,56,0,12,10]
     labels=['a','b','c','d','e','f','g','h'];
+    id=['0','1']
 }
