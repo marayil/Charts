@@ -1,1 +1,8 @@
-<app-charts options='BAR' [data]="sample" chartLabel="abc"></app-charts>
+<div>
+    <p>1st</p>
+    <app-charts options='BAR' [data]="sample" [chartLabels]="labels"></app-charts>
+</div>
+<div>
+    <p>2nd</p>
+    <app-charts options='DOUGHNUT' [data]="sample" [chartLabels]="labels"></app-charts>
+</div>
