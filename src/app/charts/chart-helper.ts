@@ -31,8 +31,8 @@ export class ChartHelper {
               ],
             },
             options: {
-              responsive: true,
-              maintainAspectRatio: false,
+              responsive: false,
+              maintainAspectRatio: true,
             },
           };
           chartConfiguration = { ...defaultConfig };
@@ -55,10 +55,10 @@ export class ChartHelper {
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-            },
+            // options: {
+            //   responsive: true,
+            //   maintainAspectRatio: false,
+            // },
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -80,10 +80,10 @@ export class ChartHelper {
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-            },
+            // options: {
+            //   responsive: false,
+            //   maintainAspectRatio: false,
+            // },
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
