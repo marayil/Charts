@@ -1,8 +1,10 @@
-<div>
-    <p>1st</p>
-    <app-charts [chartId]="id[0]" options='BAR' [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
-</div>
-<div>
-    <p>2nd</p>
-    <app-charts [chartId]='id[1]' options='DOUGHNUT' [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
+<div id="container">
+    <div id="graph-1">
+        <p>1st</p>
+        <app-charts [chartId]="id[0]" options='BAR' [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
+    </div>
+    <div id="graph-2">
+        <p>2nd</p>
+        <app-charts [chartId]='id[1]' options='DOUGHNUT' [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
+    </div>
 </div>
