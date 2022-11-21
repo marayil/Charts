@@ -5,8 +5,9 @@ import { ChartTypes } from './charts.enum';
 export class ChartHelper {
   public static getChartConfiguration(
     type: string,
-    data: number[],
-    labels: string[]
+    data: Array<number>,
+    labels: Array<string>,
+    backgroundColor: Array<string>
   ): ChartConfiguration<'bar' | 'line' | 'pie' | 'doughnut'> | null {
     let chartConfiguration: ChartConfiguration<
       'bar' | 'line' | 'pie' | 'doughnut'
@@ -26,7 +27,7 @@ export class ChartHelper {
                   label: 'graph',
                   data: data,
                   type: 'bar',
-                  backgroundColor: 'red',
+                  backgroundColor: backgroundColor[0],
                 },
               ],
             },
@@ -77,6 +78,7 @@ export class ChartHelper {
                   data: data,
                   label: 'Doughnut',
                   type: 'doughnut',
+                  backgroundColor: backgroundColor
                 },
               ],
             },

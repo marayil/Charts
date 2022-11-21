@@ -1,8 +1,8 @@
-<div style="height: 750px; width: 200px;">
+<div>
     <p>1st</p>
-    <app-charts [chartId]="id[0]" options='BAR' [data]="sample" [chartLabels]="labels"  ></app-charts>
+    <app-charts [chartId]="id[0]" options='BAR' [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
 </div>
-<div style="height: 750px; width: 200px;">
+<div>
     <p>2nd</p>
-    <app-charts [chartId]='id[1]' options='DOUGHNUT' [data]="sample" [chartLabels]="labels" ></app-charts>
+    <app-charts [chartId]='id[1]' options='DOUGHNUT' [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
 </div>
