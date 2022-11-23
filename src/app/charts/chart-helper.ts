@@ -1,17 +1,18 @@
-import { ChartConfiguration, Colors } from 'chart.js';
+import { Chart, ChartConfiguration, Colors, Legend } from 'chart.js';
 import { reduce } from 'rxjs';
 import { ChartTypes } from './charts.enum';
-
 export class ChartHelper {
   public static getChartConfiguration(
     type: string,
     data: Array<number>,
     labels: Array<string>,
-    backgroundColor: Array<string>
+    backgroundColor: Array<string>,
+    plugin:any
   ): ChartConfiguration<'bar' | 'line' | 'pie' | 'doughnut'> | null {
     let chartConfiguration: ChartConfiguration<
       'bar' | 'line' | 'pie' | 'doughnut'
     >;
+    
     switch (type) {
       case ChartTypes.BAR:
         {
@@ -112,6 +113,35 @@ export class ChartHelper {
               responsive: true,
               maintainAspectRatio: false,
             },
+          };
+          chartConfiguration = { ...defaultConfig };
+          return chartConfiguration;
+        }
+        break;
+        case ChartTypes.GAUGE:{
+          const defaultConfig: ChartConfiguration<
+            'bar' | 'line' | 'pie' | 'doughnut'
+          > = {
+            type: 'doughnut',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  data: data,
+                  label: 'pop',
+                  type: 'doughnut',
+                  
+                },
+              ],
+            },
+            options: {
+              maintainAspectRatio: type !== ChartTypes.GAUGE,
+              circumference: type === ChartTypes.GAUGE ? 180 : 360,
+              rotation: type === ChartTypes.GAUGE ? -90 :0,
+              plugins:plugin              
+            },
+            
+            
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
