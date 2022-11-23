@@ -35,7 +35,7 @@ export class TextManipulationPlugin {
                     ctx.fillStyle = 'black';
                 
                     // Draw text in center
-                    ctx.fillText('Center Text', chart.chartArea.width/2, chart.chartArea.top+ (chart.chartArea.height/2) );
+                    ctx.fillText('Center Text', chart.chartArea.width/2, chart.chartArea.top+ chart.chartArea.height/1.35 );
                     
             }
         }
