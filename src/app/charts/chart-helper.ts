@@ -1,13 +1,13 @@
-import { Chart, ChartConfiguration, Colors, Legend } from 'chart.js';
+import { Chart, ChartConfiguration, Colors, Legend, Tooltip } from 'chart.js';
 import { reduce } from 'rxjs';
 import { ChartTypes } from './charts.enum';
+import { TextManipulationPlugin } from './text-manipulation-plugin';
 export class ChartHelper {
   public static getChartConfiguration(
     type: string,
     data: Array<number>,
     labels: Array<string>,
     backgroundColor: Array<string>,
-    plugin:any
   ): ChartConfiguration<'bar' | 'line' | 'pie' | 'doughnut'> | null {
     let chartConfiguration: ChartConfiguration<
       'bar' | 'line' | 'pie' | 'doughnut'
@@ -35,6 +35,7 @@ export class ChartHelper {
             options: {
               responsive: false,
               maintainAspectRatio: true,
+              
             },
           };
           chartConfiguration = { ...defaultConfig };
@@ -138,8 +139,23 @@ export class ChartHelper {
               maintainAspectRatio: type !== ChartTypes.GAUGE,
               circumference: type === ChartTypes.GAUGE ? 180 : 360,
               rotation: type === ChartTypes.GAUGE ? -90 :0,
-              plugins:plugin              
+             
+              // {
+                // title:{
+                //  display:true,
+                //  text: 'hello'
+                // },
+                plugins:{
+                  tooltip:{
+                    enabled:false
+                  },
+                  legend:{
+                    display:false
+                  }
+                }
+              // }
             },
+            plugins: [TextManipulationPlugin.getPlugin()],
             
             
           };

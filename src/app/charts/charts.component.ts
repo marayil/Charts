@@ -40,16 +40,8 @@ export class ChartsComponent implements AfterViewInit {
   //setup
 
   createChart() {
-    const counter={
-      id:'counter',
-      beforeDraw(chart: Chart){
-        const{ctx, chartArea:{top,right,bottom,left,width,height}}=chart;
-        ctx.save();
-        ctx.fillStyle='blue';
-        ctx.fillText("hello",width/2,top+(height/2))
-      }
-    } 
-    let chartConfig = ChartHelper.getChartConfiguration(this.options, this.data, this.chartLabels,this.backgroundColor,counter);
+    
+    let chartConfig = ChartHelper.getChartConfiguration(this.options, this.data, this.chartLabels,this.backgroundColor);
     if (chartConfig) {
       if (this.chart) {
         this.chart.destroy();
@@ -64,10 +56,10 @@ export class ChartsComponent implements AfterViewInit {
       // ctx.textBaseline='middle'
       // ctx.fillText("hi",textX,textY)
       // ctx.save()
-       
-      
       this.chart = new Chart(ctx as ChartItem, chartConfig);
-      ctx?.fillText('hi',)
+      // const height=this.chart.height;
+      // const width=this.chart.width;
+      // ctx?.fillText('hello',200,150)
       
 
       

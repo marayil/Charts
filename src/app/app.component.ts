@@ -15,6 +15,6 @@ export class AppComponent {
   backgroundColor= ['rgb(128,0,0)', 'rgb(139,0,0)', 'rgb(165,42,42)',
     'rgb(178,34,34)', 'rgb(220,20,60)', 'rgb(255,0,0)', 'rgb(255,99,71)',
     'rgb(255,127,80)', 'rgb(205,92,92)', 'rgb(240,128,128)']
-  height = '300px'
-  width = '300px'
+  height = '500px'
+  width = '500px'
 }
