@@ -161,13 +161,15 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
   for(var dataV of data){
     let index=data.indexOf(dataV)
     let typeToUse=types[index]
+    let backgroundColorToUse=backgroundColor[index]
     if(types[index]=='gauge'){
       typeToUse='doughnut'
+      backgroundColorToUse=backgroundColor
     }
     let dats={
       data:data[index],
       type:typeToUse,
-      backgroundColor:backgroundColor[index]
+      backgroundColor:backgroundColorToUse
     }
     datasetToUse.push(dats)
   }
