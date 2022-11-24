@@ -1,7 +1,7 @@
 export enum ChartTypes {
   BAR = 'bar',
   LINE = 'line',
-  DOUGHNUT = 'DOUGHNUT',
-  PIE = 'PIE',
-  GAUGE = "gauge"
+  DOUGHNUT = 'doughnut',
+  PIE = 'pie',
+  GAUGE = 'gauge'
 }

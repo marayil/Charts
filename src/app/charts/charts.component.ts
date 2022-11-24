@@ -21,13 +21,6 @@ export class ChartsComponent implements AfterViewInit {
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart: any;
   
-
-
-  // @ViewChild('chartsModel')chartsModel: ElementRef<HTMLCanvasElement>;
-  // @Input() chartConfig!: ChartConfiguration<'bar'|'line'|'doughnut'|'pie'>;
-
-  // @ViewChild('chartsModel')chartsModel: ElementRef<HTMLCanvasElement>;
-  // @Input() chartConfig!: ChartConfiguration<'bar'|'line'|'doughnut'|'pie'>;
   constructor() {
     Chart.register(...registerables)
   }
@@ -46,26 +39,7 @@ export class ChartsComponent implements AfterViewInit {
         this.chart.destroy();
       }
       const ctx = this.chartsModel?.nativeElement.getContext('2d');
-      // var text = "75%"
-      
-      // var width=this.chart.width
-      // var height=this.chart.height
-      // var textX = Math.round((width - ctx.measureText(text).width) / 2);
-      // var textY = height / 2;
-      // ctx.textBaseline='middle'
-      // ctx.fillText("hi",textX,textY)
-      // ctx.save()
-
       this.chart = new Chart(ctx as ChartItem, chartConfig);
-      
-
-      // const height=this.chart.height;
-      // const width=this.chart.width;
-      // ctx?.fillText('hello',200,150)
-      
-
-      
-      
     }
 
   }

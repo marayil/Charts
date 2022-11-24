@@ -58,13 +58,6 @@ export class ChartHelper {
             data: {
               labels: labels,
               datasets: getConfig(data,type,backgroundColor)
-              // [
-              //   {
-              //     data: data[0],
-              //     label: 'Line-Graph',
-              //     type: 'line',
-              //   },
-              // ],
             },
             options:{
               scales:{
@@ -73,10 +66,6 @@ export class ChartHelper {
                 }
               }
             }
-            // options: {
-            //   responsive: true,
-            //   maintainAspectRatio: false,
-            // },
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -91,14 +80,6 @@ export class ChartHelper {
             data: {
               labels: labels,
               datasets:getConfig(data,type, backgroundColor)
-              //  [
-              //   {
-              //     data: data,
-              //     label: 'Doughnut',
-              //     type: 'doughnut',
-              //     backgroundColor: backgroundColor
-              //   },
-              // ],
             },
               
             options:{
@@ -108,10 +89,6 @@ export class ChartHelper {
                 }
               }
             }
-            // options: {
-            //   responsive: false,
-            //   maintainAspectRatio: false,
-            // },
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -127,13 +104,6 @@ export class ChartHelper {
             data: {
               labels: labels,
               datasets:getConfig(data,type, backgroundColor),
-              //  [
-              //   {
-              //     data: data,
-              //     label: 'pie',
-              //     type: 'pie',
-              //   },
-              // ],
             },
             options: {
               scales:{
@@ -157,25 +127,12 @@ export class ChartHelper {
             data: {
               labels: labels,
               datasets: getConfig(data,type, backgroundColor)
-              // [
-              //   {
-              //     data: data,
-              //     label: 'pop',
-              //     type: 'doughnut',
-                  
-              //   },
-              // ],
             },
             options: {
               responsive:false,
               maintainAspectRatio: false,
               circumference: chartType === ChartTypes.GAUGE ? 180 : 360,
               rotation: chartType === ChartTypes.GAUGE ? -90 :0,
-              // {
-                // title:{
-                //  display:true,
-                //  text: 'hello'
-                // },
                 plugins:{
                   tooltip:{
                     enabled:false, 
