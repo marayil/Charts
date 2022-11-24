@@ -41,7 +41,9 @@ export class ChartHelper {
                 }
               },
               responsive: false,
-              maintainAspectRatio: false,
+              maintainAspectRatio: true,
+              aspectRatio:1|1,
+
               
             },
           };
@@ -60,6 +62,8 @@ export class ChartHelper {
               datasets: getConfig(data,type,backgroundColor)
             },
             options:{
+              maintainAspectRatio:true,
+              aspectRatio:1|1,
               scales:{
                 x:{
                   stacked:true
@@ -130,7 +134,8 @@ export class ChartHelper {
             },
             options: {
               responsive:false,
-              maintainAspectRatio: false,
+              maintainAspectRatio: true,
+              aspectRatio:1|1,
               circumference: chartType === ChartTypes.GAUGE ? 180 : 360,
               rotation: chartType === ChartTypes.GAUGE ? -90 :0,
                 plugins:{

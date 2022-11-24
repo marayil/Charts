@@ -16,7 +16,10 @@ export class TextManipulationPlugin {
                 ctx.textBaseline = 'middle';
 
                 let centerX = ((chartArea.width / 2)/1000)+(chartArea.width/2);
-                let centerY = ((chartArea.height / 2)/100)+(chartArea.height/1.5) ;
+                let centerY = ((chartArea.width / 2)/1000)+(chartArea.height/1.7) ;
+
+                //(chartArea.height/2)+((chartArea.height/2)*0.5) 
+                ((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;
                 
                 //dynamically calculate the font size based on canvas size
                 const fontBase = 1000;
