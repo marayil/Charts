@@ -34,7 +34,7 @@ export class TextManipulationPlugin {
                 const ratio = fontSize / fontBase;
                 const size = ctx.canvas.width * ratio;
                 ctx.font = size + 'px Arial'
-                ctx.fillText(txt, centerX, centerY)
+                // ctx.fillText(txt, centerX, centerY)
                 ctx.save()
                 // chart.ctx.fillText(txt,(chartArea.width)/2,chartArea.top+(chartArea.height/2)*1.5)
                 // const centerConfig=chartElements.arc;
@@ -55,6 +55,7 @@ export class TextManipulationPlugin {
                         ctx.fillText(iterator, centerX, centerY);
                         centerY += lineHeight;
                     }
+                    ctx.fillText(line,centerX,centerY)
                 
             }
         }
