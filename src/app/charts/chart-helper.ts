@@ -16,7 +16,6 @@ export class ChartHelper {
     switch (chartType) {
       case ChartTypes.BAR:
         {
-          console.log('hello');
           const defaultConfig: ChartConfiguration<
             'bar' | 'line' | 'pie' | 'doughnut'
           > = {
@@ -41,8 +40,8 @@ export class ChartHelper {
                   stacked:true
                 }
               },
-              responsive: true,
-              maintainAspectRatio: true,
+              responsive: false,
+              maintainAspectRatio: false,
               
             },
           };
@@ -91,7 +90,7 @@ export class ChartHelper {
             type: 'doughnut',
             data: {
               labels: labels,
-              datasets:getConfig(data,type)
+              datasets:getConfig(data,type, backgroundColor)
               //  [
               //   {
               //     data: data,
@@ -127,7 +126,7 @@ export class ChartHelper {
             type: 'pie',
             data: {
               labels: labels,
-              datasets:getConfig(data,type),
+              datasets:getConfig(data,type, backgroundColor),
               //  [
               //   {
               //     data: data,
@@ -157,7 +156,7 @@ export class ChartHelper {
             type: 'doughnut',
             data: {
               labels: labels,
-              datasets: getConfig(data,type)
+              datasets: getConfig(data,type, backgroundColor)
               // [
               //   {
               //     data: data,
@@ -168,40 +167,27 @@ export class ChartHelper {
               // ],
             },
             options: {
-             
               responsive:false,
               maintainAspectRatio: false,
               circumference: chartType === ChartTypes.GAUGE ? 180 : 360,
               rotation: chartType === ChartTypes.GAUGE ? -90 :0,
-              
               // {
                 // title:{
                 //  display:true,
                 //  text: 'hello'
                 // },
-                
                 plugins:{
-                  
-                  
                   tooltip:{
-                    enabled:false,
-                    
+                    enabled:false, 
                   },
                   legend:{
                     display:false,
                     position:'chartArea',
-                  
-                  }
-                  ,
-                  
+                  },
                 },
-                
               // }
             },
             plugins: [TextManipulationPlugin.getPlugin()],
-            
-            
-            
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -212,9 +198,8 @@ export class ChartHelper {
         break;
     }
   }
-  
 }
-function  getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
+function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
   let datasetToUse: any[]=[];
   for(var dataV of data){
     let index=data.indexOf(dataV)
