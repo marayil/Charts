@@ -1,8 +1,6 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ɵisListLikeIterable } from '@angular/core';
-import { ChartConfiguration, Chart, registerables, BarController, BarElement, LinearScale, ChartItem } from 'chart.js';
-import { X } from 'chart.js/dist/chunks/helpers.core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Chart, ChartItem, registerables } from 'chart.js';
 import { ChartHelper } from './chart-helper';
-import { ChartTypes } from './charts.enum';
 
 @Component({
   selector: 'app-charts',
@@ -11,8 +9,8 @@ import { ChartTypes } from './charts.enum';
 })
 export class ChartsComponent implements AfterViewInit {
   // @Input() options!: ChartTypes;
-  @Input() options: any;
-  @Input() data!: Array<number>;
+  @Input() options!: Array<string>;
+  @Input() data!: Array<Array<number>>;
   @Input() chartLabels!: Array<string>;
   @Input() chartId!: string;
   @Input() backgroundColor!: Array<string>;
@@ -22,6 +20,7 @@ export class ChartsComponent implements AfterViewInit {
 
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart: any;
+  
 
 
   // @ViewChild('chartsModel')chartsModel: ElementRef<HTMLCanvasElement>;
@@ -56,7 +55,10 @@ export class ChartsComponent implements AfterViewInit {
       // ctx.textBaseline='middle'
       // ctx.fillText("hi",textX,textY)
       // ctx.save()
+
       this.chart = new Chart(ctx as ChartItem, chartConfig);
+      
+
       // const height=this.chart.height;
       // const width=this.chart.width;
       // ctx?.fillText('hello',200,150)

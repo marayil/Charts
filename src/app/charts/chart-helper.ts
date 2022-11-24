@@ -4,16 +4,16 @@ import { ChartTypes } from './charts.enum';
 import { TextManipulationPlugin } from './text-manipulation-plugin';
 export class ChartHelper {
   public static getChartConfiguration(
-    type: string,
-    data: Array<number>,
+    type: Array<string>,
+    data: Array<Array<number>>,
     labels: Array<string>,
     backgroundColor: Array<string>,
   ): ChartConfiguration<'bar' | 'line' | 'pie' | 'doughnut'> | null {
     let chartConfiguration: ChartConfiguration<
       'bar' | 'line' | 'pie' | 'doughnut'
     >;
-    
-    switch (type) {
+    let chartType=type[0]
+    switch (chartType) {
       case ChartTypes.BAR:
         {
           console.log('hello');
@@ -23,17 +23,25 @@ export class ChartHelper {
             type: 'bar',
             data: {
               labels: labels,
-              datasets: [
-                {
-                  label: 'graph',
-                  data: data,
-                  type: 'bar',
-                  backgroundColor: backgroundColor[0],
-                },
-              ],
+              datasets: getConfig(data,type,backgroundColor),               
+                // {
+                //   label: 'graph',
+                //   data: data,
+                //   type: 'bar',
+                //   backgroundColor: backgroundColor[0],
+                // },
+              
             },
             options: {
-              responsive: false,
+              scales:{
+                x:{
+                  stacked:true
+                },
+                y:{
+                  stacked:true
+                }
+              },
+              responsive: true,
               maintainAspectRatio: true,
               
             },
@@ -50,14 +58,22 @@ export class ChartHelper {
             type: 'line',
             data: {
               labels: labels,
-              datasets: [
-                {
-                  data: data,
-                  label: 'Line-Graph',
-                  type: 'line',
-                },
-              ],
+              datasets: getConfig(data,type,backgroundColor)
+              // [
+              //   {
+              //     data: data[0],
+              //     label: 'Line-Graph',
+              //     type: 'line',
+              //   },
+              // ],
             },
+            options:{
+              scales:{
+                x:{
+                  stacked:true
+                }
+              }
+            }
             // options: {
             //   responsive: true,
             //   maintainAspectRatio: false,
@@ -75,15 +91,24 @@ export class ChartHelper {
             type: 'doughnut',
             data: {
               labels: labels,
-              datasets: [
-                {
-                  data: data,
-                  label: 'Doughnut',
-                  type: 'doughnut',
-                  backgroundColor: backgroundColor
-                },
-              ],
+              datasets:getConfig(data,type)
+              //  [
+              //   {
+              //     data: data,
+              //     label: 'Doughnut',
+              //     type: 'doughnut',
+              //     backgroundColor: backgroundColor
+              //   },
+              // ],
             },
+              
+            options:{
+              scales:{
+                x:{
+                  stacked:true
+                }
+              }
+            }
             // options: {
             //   responsive: false,
             //   maintainAspectRatio: false,
@@ -102,16 +127,22 @@ export class ChartHelper {
             type: 'pie',
             data: {
               labels: labels,
-              datasets: [
-                {
-                  data: data,
-                  label: 'pie',
-                  type: 'pie',
-                },
-              ],
+              datasets:getConfig(data,type),
+              //  [
+              //   {
+              //     data: data,
+              //     label: 'pie',
+              //     type: 'pie',
+              //   },
+              // ],
             },
             options: {
-              responsive: true,
+              scales:{
+                x:{
+                  stacked:true
+                }
+              },
+              responsive: false,
               maintainAspectRatio: false,
             },
           };
@@ -126,36 +157,49 @@ export class ChartHelper {
             type: 'doughnut',
             data: {
               labels: labels,
-              datasets: [
-                {
-                  data: data,
-                  label: 'pop',
-                  type: 'doughnut',
+              datasets: getConfig(data,type)
+              // [
+              //   {
+              //     data: data,
+              //     label: 'pop',
+              //     type: 'doughnut',
                   
-                },
-              ],
+              //   },
+              // ],
             },
             options: {
-              maintainAspectRatio: type !== ChartTypes.GAUGE,
-              circumference: type === ChartTypes.GAUGE ? 180 : 360,
-              rotation: type === ChartTypes.GAUGE ? -90 :0,
              
+              responsive:false,
+              maintainAspectRatio: false,
+              circumference: chartType === ChartTypes.GAUGE ? 180 : 360,
+              rotation: chartType === ChartTypes.GAUGE ? -90 :0,
+              
               // {
                 // title:{
                 //  display:true,
                 //  text: 'hello'
                 // },
+                
                 plugins:{
+                  
+                  
                   tooltip:{
-                    enabled:false
+                    enabled:false,
+                    
                   },
                   legend:{
-                    display:false
+                    display:false,
+                    position:'chartArea',
+                  
                   }
-                }
+                  ,
+                  
+                },
+                
               // }
             },
             plugins: [TextManipulationPlugin.getPlugin()],
+            
             
             
           };
@@ -168,4 +212,22 @@ export class ChartHelper {
         break;
     }
   }
+  
+}
+function  getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
+  let datasetToUse: any[]=[];
+  for(var dataV of data){
+    let index=data.indexOf(dataV)
+    let typeToUse=types[index]
+    if(types[index]=='gauge'){
+      typeToUse='doughnut'
+    }
+    let dats={
+      data:data[index],
+      type:typeToUse,
+      backgroundColor:backgroundColor[index]
+    }
+    datasetToUse.push(dats)
+  }
+  return datasetToUse
 }
