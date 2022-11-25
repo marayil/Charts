@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Chart, ChartItem, registerables } from 'chart.js';
 import { ChartHelper } from './chart-helper';
 
@@ -17,10 +18,10 @@ export class ChartsComponent implements AfterViewInit {
   @Input() height!: string;
   @Input() width!: string;
   @Input() ngStyle!: { [klass: string]: any; };
-
+  // @Output() dataChange= new EventEmitter();
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart: any;
-  
+  i=0
   constructor() {
     Chart.register(...registerables)
   }
@@ -28,6 +29,16 @@ export class ChartsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     this.createChart();
+  }
+  ngOnChanges(changes:SimpleChanges):void{
+    console.log('hi');
+    if(changes&& this.i>0){
+      this.createChart();
+    }
+    else{
+      this.i++;
+    }
+    // this.createChart();
   }
   //setup
 
@@ -40,6 +51,7 @@ export class ChartsComponent implements AfterViewInit {
       }
       const ctx = this.chartsModel?.nativeElement.getContext('2d');
       this.chart = new Chart(ctx as ChartItem, chartConfig);
+      this.chart.update()
     }
 
   }

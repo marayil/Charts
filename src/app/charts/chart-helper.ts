@@ -62,8 +62,9 @@ export class ChartHelper {
               datasets: getConfig(data,type,backgroundColor)
             },
             options:{
-              maintainAspectRatio:true,
-              aspectRatio:1|1,
+              responsive:true,
+              maintainAspectRatio:false,
+
               scales:{
                 x:{
                   stacked:true
@@ -71,6 +72,7 @@ export class ChartHelper {
               }
             }
           };
+          
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
         }
