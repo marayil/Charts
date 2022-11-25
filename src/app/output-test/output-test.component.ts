@@ -11,14 +11,14 @@ btnClick=false
  sample = [[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]]
   // 
    sample2=[[1, 2, 3, 4, 5, 6]]
-   labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+   labels = ['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22']
   id = ['0', '1','2']
   s3=[[10,1,2,22,3]]
   // backgroundColor= ['rgb(128,0,0)', 'rgb(139,0,0)', 'rgb(165,42,42)',
   //   'rgb(178,34,34)', 'rgb(220,20,60)', 'rgb(255,0,0)', 'rgb(255,99,71)',
   //   'rgb(255,127,80)', 'rgb(205,92,92)', 'rgb(240,128,128)']
-  height = '400px'
-  width = '400px'
+  height = '200px'
+  width = '600px'
   backgroundColor=['aliceblue','pink','red','yellow','blue']
   constructor() {
     
@@ -26,7 +26,7 @@ btnClick=false
 
   ngOnInit(): void {
     if(!this.btnClick){
-      this.sample2=[[1, 2, 3, 4, 5, 6]]
+      this.sample2=[[12, 23, 36, 30, 25, 42]]
     }
     else{
       this.sample2=[[10,2,3,9,12,14]]
@@ -36,7 +36,8 @@ btnClick=false
     console.log('clicked')
   }
   type=['bar','bar'];
-  type2=['line']
+  type2=['line'];
+  type3=['gauge']
 init(){if(this.btnClick){}
   
 }

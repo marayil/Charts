@@ -1,4 +1,4 @@
-import { Chart, ChartConfiguration, Colors, Legend, Tooltip } from 'chart.js';
+import { Chart, ChartConfiguration, Colors, Legend, Ticks, Tooltip } from 'chart.js';
 import { reduce } from 'rxjs';
 import { ChartTypes } from './charts.enum';
 import { TextManipulationPlugin } from './text-manipulation-plugin';
@@ -34,10 +34,7 @@ export class ChartHelper {
                 }
               },
               responsive: true,
-              maintainAspectRatio: true,
-              aspectRatio:1|1,
-
-              
+              maintainAspectRatio: false,              
             },
           };
           chartConfiguration = { ...defaultConfig };
@@ -63,14 +60,22 @@ export class ChartHelper {
                   grid:{
                     display:false
                   },
-                  stacked:true
+                  stacked:true,
+                
                 },
-                y:{
+                y:{min:0,
                   grid:{
                     display:false
                   },
-                  stacked:true
-                }
+                  stacked:true,
+                  ticks:{
+                  
+                  display:true,
+                  stepSize:12,  
+                  },
+                  position:'right'
+                },
+                
               }
             }
           };
@@ -173,7 +178,9 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
   for(var dataV of data){
     let index=data.indexOf(dataV)
     let typeToUse=types[index]
-    let backgroundColorToUse=backgroundColor[index]
+    let fillValue=true;
+    let tension=0.1
+    let backgroundColorToUse=backgroundColor[index];
     if(types[index]=='gauge'){
       typeToUse='doughnut'
       backgroundColorToUse=backgroundColor
@@ -181,7 +188,11 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
     let dats={
       data:data[index],
       type:typeToUse,
-      backgroundColor:backgroundColorToUse
+      backgroundColor:backgroundColorToUse,
+      fill:fillValue,
+      borderColor:'rgb(90, 182, 176)',
+      tension:tension,
+      borderWidth:0.1
     }
     datasetToUse.push(dats)
   }
