@@ -22,14 +22,7 @@ export class ChartHelper {
             type: 'bar',
             data: {
               labels: labels,
-              datasets: getConfig(data,type,backgroundColor),               
-                // {
-                //   label: 'graph',
-                //   data: data,
-                //   type: 'bar',
-                //   backgroundColor: backgroundColor[0],
-                // },
-              
+              datasets: getConfig(data,type,backgroundColor),
             },
             options: {
               scales:{
@@ -40,7 +33,7 @@ export class ChartHelper {
                   stacked:true
                 }
               },
-              responsive: false,
+              responsive: true,
               maintainAspectRatio: true,
               aspectRatio:1|1,
 
@@ -67,6 +60,15 @@ export class ChartHelper {
 
               scales:{
                 x:{
+                  grid:{
+                    display:false
+                  },
+                  stacked:true
+                },
+                y:{
+                  grid:{
+                    display:false
+                  },
                   stacked:true
                 }
               }
@@ -91,7 +93,10 @@ export class ChartHelper {
             options:{
               scales:{
                 x:{
-                  stacked:true
+                  stacked:true,
+                  grid:{
+                    display:false
+                  }
                 }
               }
             }
