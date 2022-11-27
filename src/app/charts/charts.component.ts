@@ -13,10 +13,10 @@ export class ChartsComponent implements AfterViewInit {
   @Input() options!: Array<string>;
   @Input() data!: Array<Array<number>>;
   @Input() chartLabels!: Array<string>;
-  @Input() chartId!: string;
+  // @Input() chartId!: string;
   @Input() backgroundColor!: Array<string>;
-  @Input() height!: string;
-  @Input() width!: string;
+  @Input() height?: string;
+  @Input() width?: string;
   @Input() ngStyle!: { [klass: string]: any; };
   // @Output() dataChange= new EventEmitter();
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;

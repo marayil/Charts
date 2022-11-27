@@ -24,18 +24,7 @@ export class ChartHelper {
               labels: labels,
               datasets: getConfig(data,type,backgroundColor),
             },
-            options: {
-              scales:{
-                x:{
-                  stacked:true
-                },
-                y:{
-                  stacked:true
-                }
-              },
-              responsive: true,
-              maintainAspectRatio: false,              
-            },
+            options: getOptions()
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -95,16 +84,7 @@ export class ChartHelper {
               datasets:getConfig(data,type, backgroundColor)
             },
               
-            options:{
-              scales:{
-                x:{
-                  stacked:true,
-                  grid:{
-                    display:false
-                  }
-                }
-              }
-            }
+            options:getOptions()
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -121,15 +101,7 @@ export class ChartHelper {
               labels: labels,
               datasets:getConfig(data,type, backgroundColor),
             },
-            options: {
-              scales:{
-                x:{
-                  stacked:true
-                }
-              },
-              responsive: false,
-              maintainAspectRatio: false,
-            },
+            options: getOptions()
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -147,12 +119,14 @@ export class ChartHelper {
             options: {
               responsive:false,
               maintainAspectRatio: true,
-              aspectRatio:1|1,
               circumference: chartType === ChartTypes.GAUGE ? 180 : 360,
               rotation: chartType === ChartTypes.GAUGE ? -90 :0,
                 plugins:{
+                  
                   tooltip:{
-                    enabled:false, 
+                    enabled:true,
+                  
+                     
                   },
                   legend:{
                     display:false,
@@ -192,9 +166,35 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
       fill:fillValue,
       borderColor:'rgb(90, 182, 176)',
       tension:tension,
-      borderWidth:0.1
+      borderWidth:0.1,
+      label:'hi'
     }
     datasetToUse.push(dats)
   }
   return datasetToUse
+}
+
+function getOptions(){
+  let options={
+    
+      scales:{
+        x:{
+          grid:{
+            display:false
+          },
+          stacked:true
+        },
+        y:{
+          grid:{
+            display:false
+          },
+          stacked:true
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,              
+    };
+
+  
+  return options
 }
