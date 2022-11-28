@@ -1,18 +1,19 @@
-import { Chart, ChartConfiguration, Colors, Legend, Ticks, Tooltip } from 'chart.js';
-import { reduce } from 'rxjs';
+import { ChartConfiguration } from 'chart.js';
 import { ChartTypes } from './charts.enum';
+import { IChartData } from './charts.interfaces';
 import { TextManipulationPlugin } from './text-manipulation-plugin';
 export class ChartHelper {
   public static getChartConfiguration(
-    type: Array<string>,
-    data: Array<Array<number>>,
-    labels: Array<string>,
-    backgroundColor: Array<string>,
+    chartConfig: IChartData
+    // type: Array<string>,
+    // data: Array<Array<number>>,
+    // labels: Array<string>,
+    // backgroundColor: Array<string>,
   ): ChartConfiguration<'bar' | 'line' | 'pie' | 'doughnut'> | null {
     let chartConfiguration: ChartConfiguration<
       'bar' | 'line' | 'pie' | 'doughnut'
     >;
-    let chartType=type[0]
+    let chartType=chartConfig.type[0]
     switch (chartType) {
       case ChartTypes.BAR:
         {
@@ -21,8 +22,8 @@ export class ChartHelper {
           > = {
             type: 'bar',
             data: {
-              labels: labels,
-              datasets: getConfig(data,type,backgroundColor),
+              labels: chartConfig.labels,
+              datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
             options: getOptions()
           };
@@ -37,8 +38,8 @@ export class ChartHelper {
           > = {
             type: 'line',
             data: {
-              labels: labels,
-              datasets: getConfig(data,type,backgroundColor)
+              labels: chartConfig.labels,
+              datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
             options:{
               responsive:true,
@@ -80,8 +81,8 @@ export class ChartHelper {
           > = {
             type: 'doughnut',
             data: {
-              labels: labels,
-              datasets:getConfig(data,type, backgroundColor)
+              labels: chartConfig.labels,
+              datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
               
             options:getOptions()
@@ -98,8 +99,8 @@ export class ChartHelper {
           > = {
             type: 'pie',
             data: {
-              labels: labels,
-              datasets:getConfig(data,type, backgroundColor),
+              labels: chartConfig.labels,
+              datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
             options: getOptions()
           };
@@ -113,8 +114,8 @@ export class ChartHelper {
           > = {
             type: 'doughnut',
             data: {
-              labels: labels,
-              datasets: getConfig(data,type, backgroundColor)
+              labels: chartConfig.labels,
+              datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
             options: {
               responsive:false,

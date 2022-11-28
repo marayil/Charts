@@ -2,6 +2,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Chart, ChartItem, registerables } from 'chart.js';
 import { ChartHelper } from './chart-helper';
+import { IChartData } from './charts.interfaces';
 
 @Component({
   selector: 'app-charts',
@@ -9,16 +10,15 @@ import { ChartHelper } from './chart-helper';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements AfterViewInit {
-  // @Input() options!: ChartTypes;
+  @Input() chartConfig!: IChartData
   @Input() options!: Array<string>;
   @Input() data!: Array<Array<number>>;
   @Input() chartLabels!: Array<string>;
-  // @Input() chartId!: string;
   @Input() backgroundColor!: Array<string>;
   @Input() height?: string;
   @Input() width?: string;
   @Input() ngStyle!: { [klass: string]: any; };
-  // @Output() dataChange= new EventEmitter();
+
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart: any;
   i=0
@@ -44,7 +44,7 @@ export class ChartsComponent implements AfterViewInit {
 
   createChart() {
     
-    let chartConfig = ChartHelper.getChartConfiguration(this.options, this.data, this.chartLabels,this.backgroundColor);
+    let chartConfig = ChartHelper.getChartConfiguration(this.chartConfig);
     if (chartConfig) {
       if (this.chart) {
         this.chart.destroy();
