@@ -1,5 +1,4 @@
-import { Chart, ChartArea, ChartItem, ChartOptions, DoughnutController } from "chart.js"
-const highResValue = 1643;
+import { Chart, ChartArea} from "chart.js"
 
 export class TextManipulationPlugin {
 
@@ -16,7 +15,7 @@ export class TextManipulationPlugin {
                 ctx.textBaseline = 'middle';
 
                 let centerX = ((chartArea.width / 2)/1000)+(chartArea.width/2);
-                let centerY = ((chartArea.width / 2)/1000)+(chartArea.height/1.7) ;
+                let centerY = ((chartArea.width / 2)/1000)+(chartArea.height/1.5) ;
 
                 //(chartArea.height/2)+((chartArea.height/2)*0.5) 
                 ((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;
