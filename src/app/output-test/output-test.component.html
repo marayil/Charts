@@ -1,9 +1,9 @@
 <div id="container">
     <div id="graph-1">
         <p>1st</p>
-        <app-charts [options]="type" [data]="sample" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
+        <app-charts [chartConfig]="data" [height]="height" [width]="width"></app-charts>
     </div>
-    <div id="graph-2">
+    <!-- <div id="graph-2">
         <p>2nd</p>
         <app-charts [options]='type2' [data]='sample2' [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
         <button (click)="onClick()" >click</button>
@@ -12,5 +12,8 @@
     <div>
         <app-charts [options]='type3' [data]='sample2' [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
 
-    </div>
+    </div> -->
+    <!-- <div>
+        <app-charts [options]="type4" [data]="sample4" [chartLabels]="labels" [backgroundColor]="backgroundColor" [height]="height" [width]="width"></app-charts>
+    </div> -->
 </div>

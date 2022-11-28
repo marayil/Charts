@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { IChartData } from '../charts/charts.interfaces';
 
 @Component({
   selector: 'app-output-test',
@@ -7,6 +8,12 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 })
 export class OutputTestComponent implements OnInit, OnChanges {
 btnClick=false
+data: IChartData={
+  data:[[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]
+  type: ['gauge'],
+  labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
+  backgroundColors: ['aliceblue','pink','red','yellow','blue']
+}
 // @Output() dataChange= new EventEmitter<Array<Array<number>>>();
  sample = [[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]]
   // 
@@ -38,6 +45,8 @@ btnClick=false
   type=['bar','bar'];
   type2=['line'];
   type3=['gauge']
+  type4=['line','line']
+  sample4=[[3,6,8,12,4,9],[12,5,7,9,12,6]]
 init(){if(this.btnClick){}
   
 }
