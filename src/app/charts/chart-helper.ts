@@ -1,14 +1,10 @@
-import { ChartConfiguration } from 'chart.js';
+import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { ChartTypes } from './charts.enum';
 import { IChartData } from './charts.interfaces';
 import { TextManipulationPlugin } from './text-manipulation-plugin';
 export class ChartHelper {
   public static getChartConfiguration(
     chartConfig: IChartData
-    // type: Array<string>,
-    // data: Array<Array<number>>,
-    // labels: Array<string>,
-    // backgroundColor: Array<string>,
   ): ChartConfiguration<'bar' | 'line' | 'pie' | 'doughnut'> | null {
     let chartConfiguration: ChartConfiguration<
       'bar' | 'line' | 'pie' | 'doughnut'
@@ -25,7 +21,7 @@ export class ChartHelper {
               labels: chartConfig.labels,
               datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
-            options: getOptions()
+            options: getOptions(chartConfig)
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -41,33 +37,7 @@ export class ChartHelper {
               labels: chartConfig.labels,
               datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
-            options:{
-              responsive:true,
-              maintainAspectRatio:false,
-
-              scales:{
-                x:{
-                  grid:{
-                    display:false
-                  },
-                  stacked:true,
-                
-                },
-                y:{min:0,
-                  grid:{
-                    display:false
-                  },
-                  stacked:true,
-                  ticks:{
-                  
-                  display:true,
-                  stepSize:12,  
-                  },
-                  position:'right'
-                },
-                
-              }
-            }
+            options: getOptions(chartConfig)
           };
           
           chartConfiguration = { ...defaultConfig };
@@ -79,13 +49,13 @@ export class ChartHelper {
           const defaultConfig: ChartConfiguration<
             'bar' | 'line' | 'pie' | 'doughnut'
           > = {
-            type: 'doughnut',
+            type: chartType,
             data: {
               labels: chartConfig.labels,
               datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
               
-            options:getOptions()
+            options:getOptions(chartConfig)
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -97,12 +67,12 @@ export class ChartHelper {
           const defaultConfig: ChartConfiguration<
             'bar' | 'line' | 'pie' | 'doughnut'
           > = {
-            type: 'pie',
+            type: chartType,
             data: {
               labels: chartConfig.labels,
               datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
-            options: getOptions()
+            options: getOptions(chartConfig)
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -117,26 +87,9 @@ export class ChartHelper {
               labels: chartConfig.labels,
               datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
-            options: {
-              responsive:false,
-              maintainAspectRatio: true,
-              circumference: chartType === ChartTypes.GAUGE ? 180 : 360,
-              rotation: chartType === ChartTypes.GAUGE ? -90 :0,
-                plugins:{
-                  
-                  tooltip:{
-                    enabled:true,
-                  
-                     
-                  },
-                  legend:{
-                    display:false,
-                    position:'chartArea',
-                  },
-                },
-              // }
-            },
+            options: getOptions(chartConfig),
             plugins: [TextManipulationPlugin.getPlugin()],
+            
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -153,49 +106,63 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
   for(var dataV of data){
     let index=data.indexOf(dataV)
     let typeToUse=types[index]
-    let fillValue=true;
-    let tension=0.1
+   
     let backgroundColorToUse=backgroundColor[index];
     if(types[index]=='gauge'){
       typeToUse='doughnut'
       backgroundColorToUse=backgroundColor
     }
     let dats={
+      rotation:-90,
+      circumference:180,
       data:data[index],
       type:typeToUse,
       backgroundColor:backgroundColorToUse,
-      fill:fillValue,
-      borderColor:'rgb(90, 182, 176)',
-      tension:tension,
-      borderWidth:0.1,
-      label:'hi'
     }
     datasetToUse.push(dats)
   }
   return datasetToUse
 }
 
-function getOptions(){
-  let options={
-    
+function getOptions(chartConfig:IChartData){
+  
+  let options:ChartOptions={
+ 
+    indexAxis:'x',
       scales:{
         x:{
           grid:{
-            display:false
+            display:chartConfig.gridOptionsX
           },
-          stacked:true
+          stacked:chartConfig.stacked
         },
         y:{
           grid:{
-            display:false
+            display:chartConfig.gridOptionsY
           },
-          stacked:true
+          stacked:chartConfig.stacked
         }
       },
-      responsive: true,
-      maintainAspectRatio: false,              
+      plugins:{
+        tooltip:{
+          enabled:true
+        },
+        legend:{
+          display:false
+        }
+      },
+      
+      responsive: false,
+      maintainAspectRatio: true,      
+                   
     };
+    if(chartConfig.type[0]===ChartTypes.GAUGE){
+      options={
+        responsive:true,
+        maintainAspectRatio:true,
+        
+      }
+    }
 
-  
   return options
 }

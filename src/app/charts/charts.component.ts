@@ -21,7 +21,6 @@ export class ChartsComponent implements AfterViewInit {
 
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart: any;
-  i=0
   constructor() {
     Chart.register(...registerables)
   }
@@ -30,14 +29,12 @@ export class ChartsComponent implements AfterViewInit {
 
     this.createChart();
   }
-  ngOnChanges(changes:SimpleChanges):void{
+  ngOnChanges(changes: SimpleChanges):void{
     console.log('hi');
-    if(changes&& this.i>0){
+    if( changes['chartConfig'].previousValue!=null){
       this.createChart();
     }
-    else{
-      this.i++;
-    }
+
     // this.createChart();
   }
   //setup

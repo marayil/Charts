@@ -16,7 +16,7 @@ export class TextManipulationPlugin {
                 ctx.textBaseline = 'middle';
 
                 let centerX = ((chartArea.width / 2)/1000)+(chartArea.width/2);
-                let centerY = ((chartArea.width / 2)/1000)+(chartArea.height/1.7) ;
+                let centerY = ((chartArea.width / 2)/1000)+(chartArea.height/1.5) ;
 
                 //(chartArea.height/2)+((chartArea.height/2)*0.5) 
                 ((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;
@@ -29,7 +29,6 @@ export class TextManipulationPlugin {
                 ctx.font = size + 'px Arial'
                 ctx.save()
                 let lineHeight =ctx.canvas.height* 20/1000;
-                let margin = lineHeight - 4;
                 
                 const sidePadding = 55;
                 const sidePaddingCalculated = (sidePadding /100) * (chart.chartArea.width);

@@ -7,5 +7,21 @@ export interface IChartData{
     type:Array<string>,
     backgroundColors:Array<string>,
     rotation?: boolean,
-    indexAxis?: string
+    indexAxis?: string,
+    stacked?:boolean
+}
+
+export interface IChartOptions{
+    indexAxis?:string,
+    scales?:{
+        x?:any,
+        y?:any,
+    },
+    responsive:boolean,
+    maintainAspectRatio:boolean,
+    plugins:{
+        tooltip:{},
+        legend:{},
+    },
+
 }

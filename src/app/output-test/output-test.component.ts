@@ -14,6 +14,13 @@ data: IChartData={
   labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
   backgroundColors: ['aliceblue','pink','red','yellow','blue']
 }
+data2: IChartData={
+  data:[[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]], //[2, 4, 5, 2, 60, 22]]
+  type: ['bar','bar'],
+  labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
+  backgroundColors: ['aliceblue','pink','red','yellow','blue'],
+  stacked:true
+}
 // @Output() dataChange= new EventEmitter<Array<Array<number>>>();
  sample = [[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]]
   // 
@@ -51,7 +58,16 @@ init(){if(this.btnClick){}
   
 }
 onClick(){
- this.sample2=[[10,2,3,9,12,14]]
+  let datax=[[10,2,3,9,12,14],[12,5,7,9,12,6]]
+ this.data2=
+ {
+  data:[...datax], type: ['bar','bar'],
+ labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
+ backgroundColors: ['aliceblue','pink','red','yellow','blue'],
+ stacked:true,
+ gridOptionsX:false,
+ gridOptionsY:false
+}
 }
 
 }
