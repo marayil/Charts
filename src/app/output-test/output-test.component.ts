@@ -12,14 +12,15 @@ data: IChartData={
   data:[[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]
   type: ['gauge'],
   labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
-  backgroundColors: ['aliceblue','pink','red','yellow','blue']
+  backgroundColors: ['aliceblue','pink','red','yellow','blue'],
 }
 data2: IChartData={
   data:[[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]], //[2, 4, 5, 2, 60, 22]]
   type: ['bar','bar'],
   labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
   backgroundColors: ['aliceblue','pink','red','yellow','blue'],
-  stacked:true
+  stacked:true,
+
 }
 // @Output() dataChange= new EventEmitter<Array<Array<number>>>();
  sample = [[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]]
@@ -31,7 +32,7 @@ data2: IChartData={
   // backgroundColor= ['rgb(128,0,0)', 'rgb(139,0,0)', 'rgb(165,42,42)',
   //   'rgb(178,34,34)', 'rgb(220,20,60)', 'rgb(255,0,0)', 'rgb(255,99,71)',
   //   'rgb(255,127,80)', 'rgb(205,92,92)', 'rgb(240,128,128)']
-  height = '200px'
+  height = '600px'
   width = '600px'
   backgroundColor=['aliceblue','pink','red','yellow','blue']
   constructor() {

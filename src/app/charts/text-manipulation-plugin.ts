@@ -1,4 +1,5 @@
-import { Chart, ChartArea} from "chart.js"
+import { Chart, ChartArea, ChartItem, ChartOptions, DoughnutController } from "chart.js"
+const highResValue = 1643;
 
 export class TextManipulationPlugin {
 
@@ -13,23 +14,22 @@ export class TextManipulationPlugin {
                 ctx.textBaseline = "middle";                
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-
-                let centerX = ((chartArea.width / 2)/1000)+(chartArea.width/2);
-                let centerY = ((chartArea.width / 2)/1000)+(chartArea.height/1.5) ;
+                console.log( chartArea.width-chartArea.width/2)
+                let centerX = (chartArea.left+chartArea.right / 2);
+                let centerY = ((chartArea.top+chartArea.bottom / 2))+(chartArea.height/5) ;
 
                 //(chartArea.height/2)+((chartArea.height/2)*0.5) 
                 ((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;
                 
                 //dynamically calculate the font size based on canvas size
                 const fontBase = 1000;
-                const fontSize = 20;
+                const fontSize = 25;
                 const ratio = fontSize / fontBase;
                 const size = ctx.canvas.width * ratio;
                 ctx.font = size + 'px Arial'
-                ctx.save()
-                let lineHeight =ctx.canvas.height* 20/1000;
+                let lineHeight =ctx.canvas.height*30/1000;
                 
-                const sidePadding = 55;
+                const sidePadding = 75;
                 const sidePaddingCalculated = (sidePadding /100) * (chart.chartArea.width);
                 const elementWidth = (chart.chartArea.width) - sidePaddingCalculated;
                 const { line, lines } = TextManipulationPlugin.breakWord(txt, ctx, elementWidth);
@@ -41,7 +41,7 @@ export class TextManipulationPlugin {
                         centerY += lineHeight;
                     }
                     ctx.fillText(line,centerX,centerY)
-                
+                    ctx.save(); 
             }
         }
 

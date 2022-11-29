@@ -10,18 +10,3 @@ export interface IChartData{
     indexAxis?: string,
     stacked?:boolean
 }
-
-export interface IChartOptions{
-    indexAxis?:string,
-    scales?:{
-        x?:any,
-        y?:any,
-    },
-    responsive:boolean,
-    maintainAspectRatio:boolean,
-    plugins:{
-        tooltip:{},
-        legend:{},
-    },
-
-}

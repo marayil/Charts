@@ -101,10 +101,10 @@ export class ChartHelper {
     }
   }
 }
-function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
+function getConfig(data:Array<any>,types:Array<string>,backgroundColor?:any){
   let datasetToUse: any[]=[];
-  for(var dataV of data){
-    let index=data.indexOf(dataV)
+  for(var dataValues of data){
+    let index=data.indexOf(dataValues)
     let typeToUse=types[index]
    
     let backgroundColorToUse=backgroundColor[index];
@@ -112,14 +112,14 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
       typeToUse='doughnut'
       backgroundColorToUse=backgroundColor
     }
-    let dats={
+    let datasetValue={
       rotation:-90,
       circumference:180,
       data:data[index],
       type:typeToUse,
       backgroundColor:backgroundColorToUse,
     }
-    datasetToUse.push(dats)
+    datasetToUse.push(datasetValue)
   }
   return datasetToUse
 }
@@ -127,7 +127,7 @@ function getConfig(data:Array<any>,types:Array<any>,backgroundColor?:any){
 function getOptions(chartConfig:IChartData){
   
   let options:ChartOptions={
- 
+    
     indexAxis:'x',
       scales:{
         x:{
@@ -148,18 +148,29 @@ function getOptions(chartConfig:IChartData){
           enabled:true
         },
         legend:{
-          display:false
+          display:false,
+          
         }
       },
       
-      responsive: false,
-      maintainAspectRatio: true,      
+      responsive: true,
+      maintainAspectRatio: false,    
                    
     };
     if(chartConfig.type[0]===ChartTypes.GAUGE){
       options={
         responsive:true,
-        maintainAspectRatio:true,
+        maintainAspectRatio:false,
+        aspectRatio:1,
+        plugins:{
+          tooltip:{
+            enabled:true
+          },
+          legend:{
+            display:false,
+            
+          }
+        },
         
       }
     }
