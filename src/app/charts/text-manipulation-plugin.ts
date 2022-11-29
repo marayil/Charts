@@ -1,5 +1,4 @@
-import { Chart, ChartArea, ChartItem, ChartOptions, DoughnutController } from "chart.js"
-const highResValue = 1643;
+import { Chart, ChartArea} from "chart.js"
 
 export class TextManipulationPlugin {
 
