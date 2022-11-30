@@ -1,12 +1,14 @@
+import { ChartItem, InteractionAxis } from "chart.js";
+
 export interface IChartData{
     labels:Array<string>,
     title?:string,
     data:Array<Array<number>>,
-    gridOptionsX?:boolean,
-    gridOptionsY?:boolean,
+    ShowXAxis?:boolean,
+    ShowYAxis?:boolean,
     type:Array<string>,
     backgroundColors:Array<string>,
     rotation?: boolean,
-    indexAxis?: string,
+    indexAxis?: ChartItem,
     stacked?:boolean
 }

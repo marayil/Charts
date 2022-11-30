@@ -15,8 +15,8 @@ data: IChartData={
   backgroundColors: ['aliceblue','pink','red','yellow','blue'],
 }
 data2: IChartData={
-  data:[[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]], //[2, 4, 5, 2, 60, 22]]
-  type: ['bar','bar'],
+  data:[[2, 4, 5, 2, 60, 22],[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]
+  type: ['bar','line'],
   labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
   backgroundColors: ['aliceblue','pink','red','yellow','blue'],
   stacked:true,
@@ -32,8 +32,8 @@ data2: IChartData={
   // backgroundColor= ['rgb(128,0,0)', 'rgb(139,0,0)', 'rgb(165,42,42)',
   //   'rgb(178,34,34)', 'rgb(220,20,60)', 'rgb(255,0,0)', 'rgb(255,99,71)',
   //   'rgb(255,127,80)', 'rgb(205,92,92)', 'rgb(240,128,128)']
-  height = '600px'
-  width = '600px'
+  height = '350px'
+  width = '350px'
   backgroundColor=['aliceblue','pink','red','yellow','blue']
   constructor() {
     
@@ -66,8 +66,8 @@ onClick(){
  labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
  backgroundColors: ['aliceblue','pink','red','yellow','blue'],
  stacked:true,
- gridOptionsX:false,
- gridOptionsY:false
+ ShowXAxis:false,
+ ShowYAxis:false
 }
 }
 

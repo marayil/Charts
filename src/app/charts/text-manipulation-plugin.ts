@@ -16,7 +16,7 @@ export class TextManipulationPlugin {
                 ctx.textBaseline = 'middle';
                 console.log( chartArea.width-chartArea.width/2)
                 let centerX = (chartArea.left+chartArea.right / 2);
-                let centerY = ((chartArea.top+chartArea.bottom / 2))+(chartArea.height/5) ;
+                let centerY = ((chartArea.top+chartArea.bottom / 2)) ;
 
                 //(chartArea.height/2)+((chartArea.height/2)*0.5) 
                 ((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;

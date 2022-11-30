@@ -11,10 +11,6 @@ import { IChartData } from './charts.interfaces';
 })
 export class ChartsComponent implements AfterViewInit {
   @Input() chartConfig!: IChartData
-  @Input() options!: Array<string>;
-  @Input() data!: Array<Array<number>>;
-  @Input() chartLabels!: Array<string>;
-  @Input() backgroundColor!: Array<string>;
   @Input() height?: string;
   @Input() width?: string;
   @Input() ngStyle!: { [klass: string]: any; };
@@ -34,11 +30,7 @@ export class ChartsComponent implements AfterViewInit {
     if( changes['chartConfig'].previousValue!=null){
       this.createChart();
     }
-
-    // this.createChart();
   }
-  //setup
-
   createChart() {
     
     let chartConfig = ChartHelper.getChartConfiguration(this.chartConfig);
