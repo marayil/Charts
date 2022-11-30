@@ -4,32 +4,35 @@ const highResValue = 1643;
 export class TextManipulationPlugin {
 
     public static getPlugin() {
+        
         return {
             id: 'text',
             beforeDraw: (chart: Chart, a: any, b: any) => {
                 const chartArea = chart.chartArea as ChartArea
                 const txt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
                 const ctx = chart.ctx;
+            
                 ctx.textAlign = 'center';
                 ctx.textBaseline = "middle";                
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 console.log( chartArea.width-chartArea.width/2)
-                let centerX = (chartArea.left+chartArea.right / 2);
-                let centerY = ((chartArea.top+chartArea.bottom / 2)) ;
+                let centerX = (chartArea.left+chartArea.right /2);
+                let centerY = (chartArea.top+chartArea.bottom/2)+chartArea.height/30 ;
 
                 //(chartArea.height/2)+((chartArea.height/2)*0.5) 
-                ((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;
+                //((chartArea.width / 2)/1000)+(chartArea.height/2)+chartArea.height/6 ;
                 
                 //dynamically calculate the font size based on canvas size
                 const fontBase = 1000;
-                const fontSize = 25;
+                const fontSize = 40;
                 const ratio = fontSize / fontBase;
                 const size = ctx.canvas.width * ratio;
                 ctx.font = size + 'px Arial'
-                let lineHeight =ctx.canvas.height*30/1000;
+                let lineHeight =20
+                //ctx.canvas.height*55/1000;
                 
-                const sidePadding = 75;
+                const sidePadding = 50;
                 const sidePaddingCalculated = (sidePadding /100) * (chart.chartArea.width);
                 const elementWidth = (chart.chartArea.width) - sidePaddingCalculated;
                 const { line, lines } = TextManipulationPlugin.breakWord(txt, ctx, elementWidth);

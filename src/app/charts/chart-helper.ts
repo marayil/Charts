@@ -7,116 +7,34 @@ export class ChartHelper {
     chartConfig: IChartData
   ): ChartConfigurationCustomTypesPerDataset | null {
     let chartConfiguration: ChartConfigurationCustomTypesPerDataset;
-    //let chartType=chartConfig.type[0] //replace with iteration?
-    // switch (chartType) {
-      // case ChartTypes.BAR:
-      //   {
           const defaultConfig: ChartConfigurationCustomTypesPerDataset = {
             data: {
               labels: chartConfig.labels,
               datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
             },
             options: getOptions(chartConfig, chartConfig.type[0]),
-            plugins:[TextManipulationPlugin.getPlugin()]
+            plugins: chartConfig.type.includes(ChartTypes.GAUGE)?[TextManipulationPlugin.getPlugin()]:[]
           };
           chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
         }
-    //     break;
-    //   case ChartTypes.LINE:
-    //     {
-    //       const defaultConfig: ChartConfigurationCustomTypesPerDataset = {
-    //         data: {
-    //           labels: chartConfig.labels,
-    //           datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
-    //         },
-    //         options: getOptions(chartConfig,chartType)
-    //       };
-          
-    //       chartConfiguration = { ...defaultConfig };
-    //       return chartConfiguration;
-    //     }
-    //     break;
-    //   case ChartTypes.DOUGHNUT:
-    //     {
-    //       const defaultConfig: ChartConfiguration<
-    //         'bar' | 'line' | 'pie' | 'doughnut'|'scatter'
-    //       > = {
-    //         type: ChartTypes.DOUGHNUT,
-    //         data: {
-    //           labels: chartConfig.labels,
-    //           datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
-    //         },
-              
-    //         options:getOptions(chartConfig,chartType)
-    //       };
-    //       chartConfiguration = { ...defaultConfig };
-    //       return chartConfiguration;
-    //     }
-
-    //     break;
-    //   case ChartTypes.PIE:
-    //     {
-    //       const defaultConfig: ChartConfiguration<
-    //         'bar' | 'line' | 'pie' | 'doughnut'|'scatter'
-    //       > = {
-    //         type: ChartTypes.PIE,
-    //         data: {
-    //           labels: chartConfig.labels,
-    //           datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
-    //         },
-    //         options: getOptions(chartConfig,chartType)
-    //       };
-    //       chartConfiguration = { ...defaultConfig };
-    //       return chartConfiguration;
-    //     }
-    //     break;
-    //     case ChartTypes.GAUGE:{
-    //       const defaultConfig: ChartConfiguration<
-    //         'bar' | 'line' | 'pie' | 'doughnut'
-    //       > = {
-    //         type: ChartTypes.DOUGHNUT,
-    //         data: {
-    //           labels: chartConfig.labels,
-    //           datasets: getConfig(chartConfig.data,chartConfig.type,chartConfig.backgroundColors),
-    //         },
-    //         options: getOptions(chartConfig, chartType),
-    //         plugins: [TextManipulationPlugin.getPlugin()],
-            
-    //       };
-    //       chartConfiguration = { ...defaultConfig };
-    //       return chartConfiguration;
-    //     }
-    //     break;
-    //   default:
-    //     return null;
-    //     break;
-    // }
   }
-//}
 
-function getConfig(data:Array<any>,types:Array<string>,backgroundColor?:any){
-  let datasetToUse:any[]=[];
-  for(var dataValues of data){
-    let index=data.indexOf(dataValues)
-    let typeToUse=types[index]
-   
-    let backgroundColorToUse=backgroundColor[index];
-    if(types[index]=='gauge'){
+function getConfig(data:Array<any>,types:Array<string>,backgroundColor?:any):Array<any>{
+  let typeToUse='';
+  let backgroundColorToUse=[];
+  let chartData=data.map((data,index)=>{
+    typeToUse=types[index]
+    backgroundColorToUse=backgroundColor[index]
+    if(types[index]===ChartTypes.GAUGE){
       typeToUse=ChartTypes.DOUGHNUT
       backgroundColorToUse=backgroundColor
     }
-    let datasetValue={
-      cutoutPercentage: '90%',
-      rotation:-90,
-      circumference:180,
-      data:dataValues,
-      type:typeToUse,
-      backgroundColor:backgroundColorToUse,
-    }
-    datasetToUse.push(datasetValue)
-  }
-  return datasetToUse
+  
+    return {data:data, type:typeToUse, backgroundColor:backgroundColorToUse, circumference:180, rotation:-90}
+  })
+  return chartData
+
 }
 
 function getOptions(chartConfig:IChartData, chartType:string){
@@ -130,19 +48,16 @@ function getOptions(chartConfig:IChartData, chartType:string){
         aspectRatio:1,
         plugins:{
           tooltip:{
-            enabled:true
+            enabled:false
           },
           legend:{
-            display:false,
-            
+            display:false
           }
-        },
-        
+        }
       }
     }
     else{
        options={
-        // indexAxis:chartConfig.indexAxis,
           scales:{
             x:{
               grid:{
@@ -158,15 +73,14 @@ function getOptions(chartConfig:IChartData, chartType:string){
             }
           },
           plugins:{
+            
             tooltip:{
-              enabled:true
+              enabled:false,
             },
             legend:{
-              display:false,
-              
+              display:false
             }
           },
-          
           responsive: true,
           maintainAspectRatio: false,    
                        
