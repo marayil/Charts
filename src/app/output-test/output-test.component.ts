@@ -20,41 +20,21 @@ data2: IChartData={
   labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
   backgroundColors: ['aliceblue','pink','red','yellow','blue'],
   stacked:true,
+  orderOfCharts:[2,1]
 
 }
-// @Output() dataChange= new EventEmitter<Array<Array<number>>>();
- sample = [[1, 2, 3, 4, 56, 0],[2, 4, 5, 2, 60, 22]]
-  // 
-   sample2=[[1, 2, 3, 4, 5, 6]]
-   labels = ['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22']
-  id = ['0', '1','2']
-  s3=[[10,1,2,22,3]]
-  // backgroundColor= ['rgb(128,0,0)', 'rgb(139,0,0)', 'rgb(165,42,42)',
-  //   'rgb(178,34,34)', 'rgb(220,20,60)', 'rgb(255,0,0)', 'rgb(255,99,71)',
-  //   'rgb(255,127,80)', 'rgb(205,92,92)', 'rgb(240,128,128)']
-  height = '350px'
-  width = '350px'
-  backgroundColor=['aliceblue','pink','red','yellow','blue']
+height='350px'
+width='650px'
   constructor() {
     
   }
 
   ngOnInit(): void {
-    if(!this.btnClick){
-      this.sample2=[[12, 23, 36, 30, 25, 42]]
-    }
-    else{
-      this.sample2=[[10,2,3,9,12,14]]
-    }
   }
   ngOnChanges():void{
     console.log('clicked')
   }
-  type=['bar','bar'];
-  type2=['line'];
-  type3=['gauge']
-  type4=['line','line']
-  sample4=[[3,6,8,12,4,9],[12,5,7,9,12,6]]
+
 init(){if(this.btnClick){}
   
 }
@@ -66,8 +46,9 @@ onClick(){
  labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
  backgroundColors: ['aliceblue','pink','red','yellow','blue'],
  stacked:true,
- ShowXAxis:false,
- ShowYAxis:false
+ showXAxis:true,
+ showYAxis:true,
+ indexAxis:'y'
 }
 }
 
