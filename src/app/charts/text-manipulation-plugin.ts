@@ -3,13 +3,13 @@ const highResValue = 1643;
 
 export class TextManipulationPlugin {
 
-    public static getPlugin() {
+    public static getPlugin(text?:string) {
         
         return {
             id: 'text',
             beforeDraw: (chart: Chart) => {
                 const chartArea = chart.chartArea as ChartArea
-                const txt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+                const txt = text?text: '';
                 const ctx = chart.ctx;
             
                 //setup for font
@@ -66,6 +66,6 @@ export class TextManipulationPlugin {
 
         return { line, lines };
     }
-
 }
+
 

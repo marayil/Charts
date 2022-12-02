@@ -9,10 +9,12 @@ import { IChartDatasetConfig } from '../charts/charts.interfaces';
 export class OutputTestComponent implements OnInit, OnChanges {
 btnClick=false
 data: IChartDatasetConfig={
-  data:[[25,30,100]], //[2, 4, 5, 2, 60, 22]]
+  data:[[10,20,30,100]], //[2, 4, 5, 2, 60, 22]]
   type: ['gauge'],
   labels:['fill','fillVal','empty'],
   backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
+  title:'OTC Collection Rate',
+
 }
 data2: IChartDatasetConfig={
   data:[[2, 4, 5, 2, 60, 22],[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]

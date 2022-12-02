@@ -8,7 +8,7 @@ export interface IChartDataset{
    
 }
 export interface IChartDatasetConfig extends IChartDataset{
-    title?:string,
+    title?:string
     showXAxisGrid?:boolean,
     showYAxisGrid?:boolean,
     showXAxis?:boolean,
@@ -16,5 +16,5 @@ export interface IChartDatasetConfig extends IChartDataset{
     rotation?: boolean,
     indexAxis?: ChartItem,
     stacked?:boolean,
-    orderOfCharts?:Array<number>
+    orderOfCharts?:Array<number>,
 }

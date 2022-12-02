@@ -1,8 +1,7 @@
-import { ThisReceiver } from '@angular/compiler';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { Chart, ChartItem, registerables } from 'chart.js';
 import { ChartHelper } from './chart-helper';
-import { IChartDataset, IChartDatasetConfig } from './charts.interfaces';
+import { IChartDatasetConfig } from './charts.interfaces';
 
 @Component({
   selector: 'app-charts',
@@ -26,7 +25,6 @@ export class ChartsComponent implements AfterViewInit {
     this.createChart();
   }
   ngOnChanges(changes: SimpleChanges):void{
-    console.log('hi');
     if( changes['chartConfig'].previousValue!=null){
       this.createChart();
     }
