@@ -12,7 +12,7 @@ export class ChartHelper {
               datasets: getDataset(chartConfig.data,chartConfig.type,chartConfig.backgroundColors,chartConfig.orderOfCharts?chartConfig.orderOfCharts:[]),
             },
             options: getOptions(chartConfig),
-            plugins: chartConfig.type.includes(ChartTypes.GAUGE)?[TextManipulationPlugin.getPlugin()]:[] //plugin added if chartType gauge exists
+            plugins: chartConfig.type.includes(ChartTypes.GAUGE)||chartConfig.type.includes(ChartTypes.DOUGHNUT)?[TextManipulationPlugin.getPlugin(chartConfig.title)]:[] //plugin added if chartType gauge exists
           };
          const chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
@@ -26,7 +26,7 @@ function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColo
   const chartData=data.map((data,index)=>{
     typeToUse=types[index]
     backgroundColorToUse=backgroundColor[index]
-    if(types[index]===ChartTypes.GAUGE){
+    if(types[index]===ChartTypes.GAUGE||types[index]===ChartTypes.DOUGHNUT){
        typeToUse=ChartTypes.DOUGHNUT
        backgroundColorToUse=backgroundColor
        data.every(item=>item===0)?data=[0,100]:data;     
@@ -38,7 +38,7 @@ function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColo
     
     }
   
-    return {data:data, type:typeToUse, backgroundColor:backgroundColorToUse, circumference:180, rotation:-90, order:order[index],spanGaps:true}
+    return {data:data, type:typeToUse, backgroundColor:backgroundColorToUse, order:order[index]}
   })
   return chartData
 }
@@ -46,10 +46,10 @@ function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColo
 function getOptions(chartConfig:IChartDatasetConfig){
  let options={};
        options={
-        backgroundColor:chartConfig.data?chartConfig.backgroundColors:'#000',
+        backgroundColor:chartConfig.backgroundColors,
         cutout:'80%',
-        circumference:180,
-        rotation:-90,
+        circumference:chartConfig.type.includes(ChartTypes.GAUGE)? 180:360,
+        rotation:chartConfig.type.includes(ChartTypes.GAUGE)? -90:0,
         indexAxis:chartConfig.indexAxis?chartConfig.indexAxis:'x',
           scales:{
             x:{
@@ -60,7 +60,7 @@ function getOptions(chartConfig:IChartDatasetConfig){
               stacked:chartConfig.stacked
             },
             y:{
-              display:chartConfig.type.includes(ChartTypes.GAUGE)?false:chartConfig.showYAxis,
+              display:chartConfig.type.includes(ChartTypes.GAUGE)||chartConfig.type.includes(ChartTypes.DOUGHNUT)?false:chartConfig.showYAxis,
               grid:{
                 display:chartConfig.showYAxisGrid?chartConfig.showYAxisGrid:false
               },

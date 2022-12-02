@@ -6,10 +6,10 @@ import { IChartDatasetConfig } from '../charts/charts.interfaces';
   templateUrl: './output-test.component.html',
   styleUrls: ['./output-test.component.scss']
 })
-export class OutputTestComponent implements OnInit, OnChanges {
-btnClick=false
+export class OutputTestComponent implements OnInit {
+  onclick=false
 data: IChartDatasetConfig={
-  data:[[10,20,30,100]], //[2, 4, 5, 2, 60, 22]]
+  data:[[10,20,100]], //[2, 4, 5, 2, 60, 22]]
   type: ['gauge'],
   labels:['fill','fillVal','empty'],
   backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
@@ -30,16 +30,9 @@ width='450px'
   constructor() {
     
   }
-
   ngOnInit(): void {
   }
-  ngOnChanges():void{
-    console.log('clicked')
-  }
 
-init(){if(this.btnClick){}
-  
-}
 onClick(){
   let datax=[[10,2,3,9,12,14],[12,5,7,9,12,6]]
  this.data2=

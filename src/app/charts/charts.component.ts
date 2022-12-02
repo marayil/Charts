@@ -13,7 +13,6 @@ export class ChartsComponent implements AfterViewInit {
   @Input() height?: string;
   @Input() width?: string;
   @Input() ngStyle!: { [klass: string]: any; };
-  validDataInput:boolean=true;
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart!: Chart;
   constructor() {
