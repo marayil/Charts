@@ -2,7 +2,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Chart, ChartItem, registerables } from 'chart.js';
 import { ChartHelper } from './chart-helper';
-import { IChartData } from './charts.interfaces';
+import { IChartDataset, IChartDatasetConfig } from './charts.interfaces';
 
 @Component({
   selector: 'app-charts',
@@ -10,13 +10,13 @@ import { IChartData } from './charts.interfaces';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements AfterViewInit {
-  @Input() chartConfig!: IChartData
+  @Input() chartConfig!: IChartDatasetConfig
   @Input() height?: string;
   @Input() width?: string;
   @Input() ngStyle!: { [klass: string]: any; };
-
+  validDataInput:boolean=true;
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
-  chart: any;
+  chart!: Chart;
   constructor() {
     Chart.register(...registerables)
   }
@@ -33,15 +33,18 @@ export class ChartsComponent implements AfterViewInit {
   }
   createChart() {
     
-    let chartConfig = ChartHelper.getChartConfiguration(this.chartConfig);
+  
+  const chartConfig = ChartHelper.getChartConfiguration(this.chartConfig);
+  
     if (chartConfig) {
       if (this.chart) {
         this.chart.destroy();
       }
       const ctx = this.chartsModel?.nativeElement.getContext('2d');
-      this.chart = new Chart(ctx as ChartItem, chartConfig);
+      this.chart = new Chart(ctx as ChartItem, chartConfig);   
       this.chart.update()
-    }
-
-  }
+    }}
+   
+  
+  
 }

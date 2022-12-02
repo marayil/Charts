@@ -1,12 +1,11 @@
-import { ChartConfiguration, ChartConfigurationCustomTypesPerDataset, ChartOptions } from 'chart.js';
+import { ChartConfigurationCustomTypesPerDataset } from 'chart.js';
 import { ChartTypes } from './charts.enum';
-import { IChartData } from './charts.interfaces';
+import { IChartDatasetConfig } from './charts.interfaces';
 import { TextManipulationPlugin } from './text-manipulation-plugin';
 export class ChartHelper {
   public static getChartConfiguration(
-    chartConfig: IChartData
+    chartConfig: IChartDatasetConfig
   ): ChartConfigurationCustomTypesPerDataset | null {
-    let chartConfiguration: ChartConfigurationCustomTypesPerDataset;
           const defaultConfig: ChartConfigurationCustomTypesPerDataset = {
             data: {
               labels: chartConfig.labels,
@@ -15,29 +14,35 @@ export class ChartHelper {
             options: getOptions(chartConfig),
             plugins: chartConfig.type.includes(ChartTypes.GAUGE)?[TextManipulationPlugin.getPlugin()]:[] //plugin added if chartType gauge exists
           };
-          chartConfiguration = { ...defaultConfig };
+         const chartConfiguration = { ...defaultConfig };
           return chartConfiguration;
         }
   }
 
-function getDataset(data:Array<any>,types:Array<string>,backgroundColor:any, order:Array<number>):Array<any>{
+function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColor:any, order:Array<number>):Array<any>{
   let typeToUse=''; //variable to store type required for different datas
   let backgroundColorToUse=[];// some charts require multiple background colors and some single
-  let chartData=data.map((data,index)=>{
+  const chartData=data.map((data,index)=>{
     typeToUse=types[index]
     backgroundColorToUse=backgroundColor[index]
     if(types[index]===ChartTypes.GAUGE){
-      typeToUse=ChartTypes.DOUGHNUT
-      backgroundColorToUse=backgroundColor
+       typeToUse=ChartTypes.DOUGHNUT
+       backgroundColorToUse=backgroundColor
+       data.every(item=>item===0)?data=[0,100]:data;     
+       const sum=data.reduce((previousValue,currentValue)=>{return previousValue+currentValue})
+     data.push(100-sum)
+     data.forEach((value,index)=>{data[index]=(value/sum)*100})
     }
-    return {data:data, type:typeToUse, backgroundColor:backgroundColorToUse, circumference:180, rotation:-90, order:order[index]}
+  
+    return {data:data, type:typeToUse, backgroundColor:backgroundColorToUse, circumference:180, rotation:-90, order:order[index],spanGaps:true}
   })
   return chartData
 }
 
-function getOptions(chartConfig:IChartData){
+function getOptions(chartConfig:IChartDatasetConfig){
  let options={};
        options={
+        backgroundColor:chartConfig.data?chartConfig.backgroundColors:'#000',
         cutout:'80%',
         circumference:180,
         rotation:-90,
@@ -60,7 +65,7 @@ function getOptions(chartConfig:IChartData){
           },
           plugins:{
             tooltip:{
-              enabled:false,
+              enabled:true,
               
             },
             legend:{

@@ -1,4 +1,7 @@
 <div [ngStyle]="{height: height, width: width}">
-    <canvas #chartsModel  >  
-    </canvas>
+        <canvas #chartsModel *ngIf="validDataInput else error "></canvas>
+    <ng-template #error>
+        <p>No data to display</p>
+    </ng-template>
+    
 </div>

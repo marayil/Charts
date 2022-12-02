@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { IChartData } from '../charts/charts.interfaces';
+import { IChartDatasetConfig } from '../charts/charts.interfaces';
 
 @Component({
   selector: 'app-output-test',
@@ -8,13 +8,13 @@ import { IChartData } from '../charts/charts.interfaces';
 })
 export class OutputTestComponent implements OnInit, OnChanges {
 btnClick=false
-data: IChartData={
-  data:[[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]
+data: IChartDatasetConfig={
+  data:[[25,50]], //[2, 4, 5, 2, 60, 22]]
   type: ['gauge'],
-  labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
-  backgroundColors: ['aliceblue','pink','red','yellow','blue'],
+  labels:['fill','fillVal','empty'],
+  backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
 }
-data2: IChartData={
+data2: IChartDatasetConfig={
   data:[[2, 4, 5, 2, 60, 22],[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]
   type: ['bar','line'],
   labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
@@ -24,7 +24,7 @@ data2: IChartData={
 
 }
 height='350px'
-width='650px'
+width='450px'
   constructor() {
     
   }
