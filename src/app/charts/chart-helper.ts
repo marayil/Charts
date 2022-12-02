@@ -21,6 +21,7 @@ export class ChartHelper {
 
 function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColor:any, order:Array<number>):Array<any>{
   let typeToUse=''; //variable to store type required for different datas
+  let sum=0;
   let backgroundColorToUse=[];// some charts require multiple background colors and some single
   const chartData=data.map((data,index)=>{
     typeToUse=types[index]
@@ -29,9 +30,12 @@ function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColo
        typeToUse=ChartTypes.DOUGHNUT
        backgroundColorToUse=backgroundColor
        data.every(item=>item===0)?data=[0,100]:data;     
-       const sum=data.reduce((previousValue,currentValue)=>{return previousValue+currentValue})
-     data.push(100-sum)
-     data.forEach((value,index)=>{data[index]=(value/sum)*100})
+     data.forEach((value,index)=>{
+      
+      data[index]=((value/data[data.length-1])*100)-sum
+      sum=sum+data[index]
+    })
+    
     }
   
     return {data:data, type:typeToUse, backgroundColor:backgroundColorToUse, circumference:180, rotation:-90, order:order[index],spanGaps:true}
@@ -65,7 +69,7 @@ function getOptions(chartConfig:IChartDatasetConfig){
           },
           plugins:{
             tooltip:{
-              enabled:true,
+              enabled:false,
               
             },
             legend:{
