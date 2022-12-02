@@ -20,17 +20,15 @@ export class ChartsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
     this.createChart();
   }
+
   ngOnChanges(changes: SimpleChanges):void{
     if( changes['chartConfig'].previousValue!=null){
       this.createChart();
     }
   }
   createChart() {
-    
-  
   const chartConfig = ChartHelper.getChartConfiguration(this.chartConfig);
   
     if (chartConfig) {
@@ -41,7 +39,4 @@ export class ChartsComponent implements AfterViewInit {
       this.chart = new Chart(ctx as ChartItem, chartConfig);   
       this.chart.update()
     }}
-   
-  
-  
 }
