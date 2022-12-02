@@ -13,7 +13,6 @@ export interface IChartDatasetConfig extends IChartDataset{
     showYAxisGrid?:boolean,
     showXAxis?:boolean,
     showYAxis?:boolean,
-    rotation?: boolean,
     indexAxis?: ChartItem,
     stacked?:boolean,
     orderOfCharts?:Array<number>,
