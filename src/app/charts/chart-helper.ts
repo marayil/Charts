@@ -27,7 +27,7 @@ function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColo
   const chartData=data.map((data,index)=>{
     typeToUse=types[index]
     backgroundColorToUse=backgroundColor[index]
-    if(types[index]===ChartTypes.GAUGE||types[index]===ChartTypes.DOUGHNUT){
+    if(types[index]===ChartTypes.GAUGE||types[index]===ChartTypes.DOUGHNUT||types[index]===ChartTypes.PIE){
        typeToUse=ChartTypes.DOUGHNUT
        backgroundColorToUse=backgroundColor
        data.every(item=>item===0)?data=[0,100]:data;     
@@ -48,20 +48,20 @@ function getOptions(chartConfig:IChartDatasetConfig){
  let options={};
        options={
         backgroundColor:chartConfig.backgroundColors,
-        cutout:'80%',
+        cutout:chartConfig.type.includes(ChartTypes.GAUGE)||chartConfig.type.includes(ChartTypes.DOUGHNUT)?'80%':'',
         circumference:chartConfig.type.includes(ChartTypes.GAUGE)? 180:360,
         rotation:chartConfig.type.includes(ChartTypes.GAUGE)? -90:0,
         indexAxis:chartConfig.indexAxis?chartConfig.indexAxis:'x',
           scales:{
             x:{
-              display:chartConfig.type.includes(ChartTypes.GAUGE)?false:chartConfig.showXAxis,
+              display:chartConfig.type.includes(ChartTypes.GAUGE)||chartConfig.type.includes(ChartTypes.DOUGHNUT)||chartConfig.type.includes(ChartTypes.PIE)?false:chartConfig.showXAxis,
               grid:{
                 display:chartConfig.showXAxisGrid?chartConfig.showXAxisGrid:false,
               },
               stacked:chartConfig.stacked
             },
             y:{
-              display:chartConfig.type.includes(ChartTypes.GAUGE)||chartConfig.type.includes(ChartTypes.DOUGHNUT)?false:chartConfig.showYAxis,
+              display:chartConfig.type.includes(ChartTypes.GAUGE)||chartConfig.type.includes(ChartTypes.DOUGHNUT)||chartConfig.type.includes(ChartTypes.PIE)?false:chartConfig.showYAxis,
               grid:{
                 display:chartConfig.showYAxisGrid?chartConfig.showYAxisGrid:false
               },
@@ -78,7 +78,7 @@ function getOptions(chartConfig:IChartDatasetConfig){
             }
           },
           responsive: true,
-          maintainAspectRatio: false,               
+          maintainAspectRatio: true,               
         };
   return options
 }

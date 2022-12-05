@@ -16,11 +16,11 @@ export class TextManipulationPlugin {
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 const centerX = (chartArea.left+chartArea.right /2);
-                let centerY = (chartArea.top+chartArea.bottom/2)+chartArea.height/10 ;
+                let centerY = (chartArea.top+chartArea.bottom/2) ;
                 
                 //dynamically calculate the font size based on canvas size
                 const fontBase = 1000;
-                const fontSize = 40;
+                const fontSize = 70;
                 const ratio = fontSize / fontBase;
                 const size = ctx.canvas.width * ratio;
                 ctx.font = size*(chartArea.height/chartArea.width) + 'px Arial'
