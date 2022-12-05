@@ -19,10 +19,11 @@ export class ChartHelper {
         }
   }
 
-function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColor:any, order:Array<number>):Array<any>{
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getDataset(data:Array<Array<number>>,types:Array<string>,backgroundColor:Array<string>, order:Array<number>):Array<any>{
   let typeToUse=''; //variable to store type required for different datas
   let sum=0;
-  let backgroundColorToUse=[];// some charts require multiple background colors and some single
+  let backgroundColorToUse:unknown;// some charts require multiple background colors and some single
   const chartData=data.map((data,index)=>{
     typeToUse=types[index]
     backgroundColorToUse=backgroundColor[index]

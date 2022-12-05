@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { ChartTypes } from '../charts/charts.enum';
 import { IChartDatasetConfig } from '../charts/charts.interfaces';
 
 @Component({
@@ -6,11 +7,11 @@ import { IChartDatasetConfig } from '../charts/charts.interfaces';
   templateUrl: './output-test.component.html',
   styleUrls: ['./output-test.component.scss']
 })
-export class OutputTestComponent implements OnInit {
+export class OutputTestComponent{
   onclick=false
 data: IChartDatasetConfig={
   data:[[10,20,100]], //[2, 4, 5, 2, 60, 22]]
-  type: ['gauge'],
+  type: [ChartTypes.GAUGE],
   labels:['fill','fillVal','empty'],
   backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
   title:'OTC Collection Rate',
@@ -27,14 +28,12 @@ data2: IChartDatasetConfig={
 }
 height='350px'
 width='450px'
-  constructor() {
-    
-  }
-  ngOnInit(): void {
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  constructor() {}
+
 
 onClick(){
-  let datax=[[10,2,3,9,12,14],[12,5,7,9,12,6]]
+  const datax=[[10,2,3,9,12,14],[12,5,7,9,12,6]]
  this.data2=
  {
   data:[...datax], type: ['bar','bar'],

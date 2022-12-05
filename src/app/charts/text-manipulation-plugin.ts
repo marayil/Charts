@@ -1,6 +1,4 @@
-import { Chart, ChartArea, ChartItem, ChartOptions, DoughnutController } from "chart.js"
-const highResValue = 1643;
-
+import { Chart, ChartArea } from "chart.js"
 export class TextManipulationPlugin {
 
     public static getPlugin(text?:string) {
@@ -46,6 +44,7 @@ export class TextManipulationPlugin {
 
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private static breakWord(txt: string, ctx: any, elementWidth: number) {
         const words = txt.split(' ');
         let line = '';

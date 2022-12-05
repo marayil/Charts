@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Chart, ChartItem, registerables } from 'chart.js';
 import { ChartHelper } from './chart-helper';
 import { IChartDatasetConfig } from './charts.interfaces';
@@ -8,11 +8,10 @@ import { IChartDatasetConfig } from './charts.interfaces';
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss']
 })
-export class ChartsComponent implements AfterViewInit {
+export class ChartsComponent implements AfterViewInit,OnChanges {
   @Input() chartConfig!: IChartDatasetConfig
   @Input() height?: string;
   @Input() width?: string;
-  @Input() ngStyle!: { [klass: string]: any; };
   @ViewChild('chartsModel') chartsModel: ElementRef<HTMLCanvasElement> | undefined;
   chart!: Chart;
   constructor() {
