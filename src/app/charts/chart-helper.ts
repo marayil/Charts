@@ -78,7 +78,7 @@ function getOptions(chartConfig:IChartDatasetConfig){
             }
           },
           responsive: true,
-          maintainAspectRatio: true,               
+          maintainAspectRatio: false,               
         };
   return options
 }

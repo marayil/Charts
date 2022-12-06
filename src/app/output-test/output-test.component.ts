@@ -10,7 +10,7 @@ export class OutputTestComponent{
 chartDataValues:Array<IChartDatasetConfig>=chartData;
 dummyData=dummyData
 height='350px'
-width='450px'
+width='550px'
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 change(){

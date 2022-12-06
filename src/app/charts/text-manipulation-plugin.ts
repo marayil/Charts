@@ -20,7 +20,7 @@ export class TextManipulationPlugin {
                 
                 //dynamically calculate the font size based on canvas size
                 const fontBase = 1000;
-                const fontSize = 70;
+                const fontSize = 60;
                 const ratio = fontSize / fontBase;
                 const size = ctx.canvas.width * ratio;
                 ctx.font = size*(chartArea.height/chartArea.width) + 'px Arial'
