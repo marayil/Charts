@@ -1,8 +1,11 @@
 <div id="container">
     <div id="graph-1" *ngFor="let chart of chartDataValues; let i=index">
         <app-charts [chartConfig]="chart" [height]="height" [width]="width"></app-charts>
-    </div>
-    <div>
         <button (click)="change()">Click</button>
+    </div>
+
+
+    <div *ngFor="let dummy of dummyData">
+        <app-charts [chartConfig]="dummy" [height]="height" [width]="width"></app-charts>
     </div>
 </div>

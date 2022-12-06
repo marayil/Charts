@@ -1,0 +1,26 @@
+[{
+"data":[[2,3,5,6,10]],
+"type":["bar","line"],
+"order":[2,1],
+"backgroundColors":["aliceblue","pink","lightblue","yellow","blue"],
+"title":"Custom title",
+"labels":["Jan`22","Feb`22","Mar`22","Apr`22"]
+},
+{
+  "data":[[2,4,8,10]],
+  "type":["gauge"],
+  "labels":["Jan`22","Feb`22","Mar`22","Apr`22"],
+  "backgroundColors":["aliceblue","pink","lightblue","yellow","blue"]  
+},
+{
+    "data":[[2,3,5,6,10],[3,4,6,9,1]],
+    "type":["bar","bar"],
+    "backgroundColors":["aliceblue","pink","lightblue","yellow","blue"],
+    "title":"Custom title",
+    "labels":["Jan`22","Feb`22","Mar`22","Apr`22"]
+    ,"stacked":true,
+    "showXAxis":false,
+    "showYAxis":false,
+    "indexAxis":true
+
+}]

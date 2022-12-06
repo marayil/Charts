@@ -1,15 +1,15 @@
 import { ChartTypes } from "../charts/charts.enum";
 import { IChartDatasetConfig } from "../charts/charts.interfaces";
 
-export const chartData=[{
-    data:[[10,20,100]], //[2, 4, 5, 2, 60, 22]]
+export const chartData:Array<IChartDatasetConfig>=[{
+    data:[[10,20,100]], 
     type: [ChartTypes.GAUGE],
     labels:['fill','fillVal','empty'],
     backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
     title:'OTC Collection Rate',
 },
 {
-    data:[[2, 4, 5, 2, 60, 22],[1, 2, 3, 4, 56, 0]], //[2, 4, 5, 2, 60, 22]]
+    data:[[2, 4, 5, 2, 60, 22],[1, 2, 3, 4, 56, 0]], 
     type: [ChartTypes.BAR,ChartTypes.LINE],
     labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
     backgroundColors: ['aliceblue','pink','red','yellow','blue'],
@@ -18,8 +18,8 @@ export const chartData=[{
 },
 ]
 
-export const newData=[{
-    data:[[30,50,100]], //[2, 4, 5, 2, 60, 22]]
+export const newData:Array<IChartDatasetConfig>=[{
+    data:[[30,50,100]], 
     type: [ChartTypes.GAUGE],
     labels:['fill','fillVal','empty'],
     backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
@@ -38,10 +38,18 @@ export const newData=[{
    },
 
 ]
-export const data3:Array<IChartDatasetConfig>=[{
+export const dummyData:Array<IChartDatasetConfig>=[{
+    data:[[20,70,100]],
+    type:[ChartTypes.DOUGHNUT],
+    labels:['hi','b','cc'],
+    backgroundColors:['lightgreen','darkblue','violte'],
+    title:'hi'
+   },
+   {
     data:[[10,20,50]],
-    type:[ChartTypes.LINE],
+    type:[ChartTypes.PIE],
     labels:['hi','b','cc'],
     backgroundColors:['lightblue','grey','darkgrey'],
     title:'hi'
-   }]
+   },
+]
