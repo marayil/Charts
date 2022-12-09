@@ -25,7 +25,6 @@ export class TextManipulationPlugin {
                 const size = ctx.canvas.width * ratio;
                 ctx.font = size*(chartArea.height/chartArea.width) + 'px Arial'
                 const lineHeight =20+20*(size/100)
-                //ctx.canvas.height*55/1000; 
                 const sidePadding = 50;
                 const sidePaddingCalculated = (sidePadding /100) * (chart.chartArea.width);
                 const elementWidth = (chart.chartArea.width) - sidePaddingCalculated;              
