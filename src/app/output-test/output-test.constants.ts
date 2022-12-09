@@ -6,14 +6,13 @@ export const chartData:Array<IChartDatasetConfig>=[{
     type: [ChartTypes.GAUGE],
     labels:['fill','fillVal','empty'],
     backgroundColors: ['aliceblue','pink','lightblue','yellow','blue'],
-    title:'OTC Collection Rate',
+    title:'sample data test version 1',
 },
 {
     data:[[2, 4, 5, 2, 60, 22],[1, 2, 3, 4, 56, 0]], 
     type: [ChartTypes.BAR,ChartTypes.LINE],
     labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
     backgroundColors: ['aliceblue','pink','red','yellow','blue'],
-    stacked:true,
     orderOfCharts:[2,1]
 },
 ]
@@ -32,7 +31,7 @@ export const newData:Array<IChartDatasetConfig>=[{
     labels:['Jan`22', 'Feb`22', 'Mar`22', 'Apr`22', 'May`22', 'Jun`22'],
     backgroundColors: ['aliceblue','pink','red','yellow','blue'],
     stacked:true,
-    showXAxis:true,
+    showXAxis:false,
     showYAxis:true,
     indexAxis:'y'
    },
@@ -43,7 +42,7 @@ export const dummyData:Array<IChartDatasetConfig>=[{
     type:[ChartTypes.DOUGHNUT],
     labels:['hi','b','cc'],
     backgroundColors:['lightgreen','darkblue','violte'],
-    title:'hi'
+    title:'Custom Title'
    },
    {
     data:[[10,20,50]],
