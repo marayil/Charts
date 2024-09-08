@@ -1,4 +1,6 @@
-# TestChart
+# Chart
+
+The project is aimed to create a reusable Chartjs repository. The project aims to acheive the generation of charts just by providing the necessary parameters.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
 
