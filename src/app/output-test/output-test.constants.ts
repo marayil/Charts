@@ -6,7 +6,7 @@ export const chartData = [{
     type: [ChartTypes.GAUGE],
     labels: ['fill', 'fillVal', 'empty'],
     backgroundColors: ['aliceblue', 'pink', 'lightblue', 'yellow', 'blue'],
-    title: 'OTC Collection Rate',
+    title: 'Test Chart',
 },
 {
     data: [[2, 4, 5, 2, 60, 22], [1, 2, 3, 4, 56, 0]],
